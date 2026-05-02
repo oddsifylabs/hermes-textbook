@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hermes Agent Architecture</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background: #020617;
+            color: #e2e8f0;
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #22d3ee;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #94a3b8;
+            margin-bottom: 40px;
+            font-size: 14px;
+        }
+        
+        .diagram-card {
+            background: #0f172a;
+            border: 1px solid #1e293b;
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 40px;
+            overflow-x: auto;
+        }
+        
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        .card {
+            background: #0f172a;
+            border: 1px solid #1e293b;
+            border-radius: 8px;
+            padding: 24px;
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        
+        .card-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        
+        .card-dot.cyan { background: #22d3ee; }
+        .card-dot.emerald { background: #34d399; }
+        .card-dot.violet { background: #a78bfa; }
+        
+        .card h3 {
+            color: #e2e8f0;
+            font-size: 16px;
+        }
+        
+        .card ul {
+            list-style: none;
+            color: #94a3b8;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+        
+        .card ul li::before {
+            content: "• ";
+            color: #22d3ee;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+        
+        svg {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>HERMES AGENT ARCHITECTURE</h1>
+        <p class="subtitle">Autonomous AI System Components & Data Flow</p>
+        
+        <div class="diagram-card">
+            <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+                <!-- Background Grid -->
+                <defs>
+                    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1e293b" stroke-width="0.5"/>
+                    </pattern>
+                    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                        <polygon points="0 0, 10 3.5, 0 7" fill="#34d399"/>
+                    </marker>
+                    <marker id="arrowhead-blue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                        <polygon points="0 0, 10 3.5, 0 7" fill="#22d3ee"/>
+                    </marker>
+                </defs>
+                
+                <rect width="1200" height="800" fill="url(#grid)"/>
+                
+                <!-- User (Left Side) -->
+                <rect x="40" y="350" width="140" height="100" rx="6" fill="rgba(30, 41, 59, 0.5)" stroke="#94a3b8" stroke-width="1.5"/>
+                <text x="110" y="395" text-anchor="middle" fill="#e2e8f0" font-size="14" font-weight="bold">USER</text>
+                <text x="110" y="415" text-anchor="middle" fill="#94a3b8" font-size="11">Telegram/CLI</text>
+                <text x="110" y="435" text-anchor="middle" fill="#94a3b8" font-size="11">Web Interface</text>
+                
+                <!-- Arrow to Agent Core -->
+                <line x1="180" y1="400" x2="280" y2="400" stroke="#22d3ee" stroke-width="2" marker-end="url(#arrowhead-blue)"/>
+                <text x="230" y="390" text-anchor="middle" fill="#22d3ee" font-size="10">Request</text>
+                
+                <!-- Agent Core (Center) -->
+                <rect x="280" y="250" width="280" height="300" rx="8" fill="rgba(6, 78, 59, 0.4)" stroke="#34d399" stroke-width="2"/>
+                <text x="420" y="285" text-anchor="middle" fill="#34d399" font-size="16" font-weight="bold">HERMES AGENT CORE</text>
+                
+                <!-- Agent Core Components -->
+                <rect x="310" y="310" width="220" height="50" rx="4" fill="rgba(6, 78, 59, 0.6)" stroke="#34d399" stroke-width="1.5"/>
+                <text x="420" y="340" text-anchor="middle" fill="#e2e8f0" font-size="12">Context Engine</text>
+                
+                <rect x="310" y="375" width="220" height="50" rx="4" fill="rgba(6, 78, 59, 0.6)" stroke="#34d399" stroke-width="1.5"/>
+                <text x="420" y="405" text-anchor="middle" fill="#e2e8f0" font-size="12">Tool Router</text>
+                
+                <rect x="310" y="440" width="220" height="50" rx="4" fill="rgba(6, 78, 59, 0.6)" stroke="#34d399" stroke-width="1.5"/>
+                <text x="420" y="470" text-anchor="middle" fill="#e2e8f0" font-size="12">Response Generator</text>
+                
+                <!-- Tools (Right Side) -->
+                <rect x="700" y="100" width="200" height="600" rx="8" fill="rgba(8, 51, 68, 0.3)" stroke="#22d3ee" stroke-width="1.5" stroke-dasharray="4,4"/>
+                <text x="800" y="135" text-anchor="middle" fill="#22d3ee" font-size="14" font-weight="bold">TOOL SYSTEM</text>
+                
+                <!-- Individual Tools -->
+                <rect x="730" y="160" width="140" height="35" rx="3" fill="rgba(8, 51, 68, 0.5)" stroke="#22d3ee" stroke-width="1"/>
+                <text x="800" y="182" text-anchor="middle" fill="#e2e8f0" font-size="11">terminal</text>
+                
+                <rect x="730" y="205" width="140" height="35" rx="3" fill="rgba(8, 51, 68, 0.5)" stroke="#22d3ee" stroke-width="1"/>
+                <text x="800" y="227" text-anchor="middle" fill="#e2e8f0" font-size="11">read_file / write_file</text>
+                
+                <rect x="730" y="250" width="140" height="35" rx="3" fill="rgba(8, 51, 68, 0.5)" stroke="#22d3ee" stroke-width="1"/>
+                <text x="800" y="272" text-anchor="middle" fill="#e2e8f0" font-size="11">browser_* tools</text>
+                
+                <rect x="730" y="295" width="140" height="35" rx="3" fill="rgba(8, 51, 68, 0.5)" stroke="#22d3ee" stroke-width="1"/>
+                <text x="800" y="317" text-anchor="middle" fill="#e2e8f0" font-size="11">search_files</text>
+                
+                <rect x="730" y="340" width="140" height="35" rx="3" fill="rgba(8, 51, 68, 0.5)" stroke="#22d3ee" stroke-width="1"/>
+                <text x="800" y="362" text-anchor="middle" fill="#e2e8f0" font-size="11">delegate_task</text>
+                
+                <rect x="730" y="385" width="140" height="35" rx="3" fill="rgba(8, 51, 68, 0.5)" stroke="#22d3ee" stroke-width="1"/>
+                <text x="800" y="407" text-anchor="middle" fill="#e2e8f0" font-size="11">memory</text>
+                
+                <rect x="730" y="430" width="140" height="35" rx="3" fill="rgba(8, 51, 68, 0.5)" stroke="#22d3ee" stroke-width="1"/>
+                <text x="800" y="452" text-anchor="middle" fill="#e2e8f0" font-size="11">skill_manage</text>
+                
+                <rect x="730" y="475" width="140" height="35" rx="3" fill="rgba(8, 51, 68, 0.5)" stroke="#22d3ee" stroke-width="1"/>
+                <text x="800" y="497" text-anchor="middle" fill="#e2e8f0" font-size="11">cronjob</text>
+                
+                <rect x="730" y="520" width="140" height="35" rx="3" fill="rgba(8, 51, 68, 0.5)" stroke="#22d3ee" stroke-width="1"/>
+                <text x="800" y="542" text-anchor="middle" fill="#e2e8f0" font-size="11">send_message</text>
+                
+                <rect x="730" y="565" width="140" height="35" rx="3" fill="rgba(8, 51, 68, 0.5)" stroke="#22d3ee" stroke-width="1"/>
+                <text x="800" y="587" text-anchor="middle" fill="#e2e8f0" font-size="11">vision_analyze</text>
+                
+                <!-- Arrows from Agent to Tools -->
+                <line x1="560" y1="400" x2="700" y2="400" stroke="#34d399" stroke-width="2" marker-end="url(#arrowhead)"/>
+                <text x="630" y="390" text-anchor="middle" fill="#34d399" font-size="10">Tool Call</text>
+                
+                <!-- Memory System (Bottom) -->
+                <rect x="280" y="600" width="280" height="120" rx="8" fill="rgba(76, 29, 149, 0.4)" stroke="#a78bfa" stroke-width="1.5"/>
+                <text x="420" y="630" text-anchor="middle" fill="#a78bfa" font-size="14" font-weight="bold">MEMORY SYSTEM</text>
+                
+                <rect x="310" y="650" width="110" height="50" rx="4" fill="rgba(76, 29, 149, 0.6)" stroke="#a78bfa" stroke-width="1"/>
+                <text x="365" y="670" text-anchor="middle" fill="#e2e8f0" font-size="11">User Profile</text>
+                <text x="365" y="685" text-anchor="middle" fill="#94a3b8" font-size="9">(preferences)</text>
+                
+                <rect x="440" y="650" width="110" height="50" rx="4" fill="rgba(76, 29, 149, 0.6)" stroke="#a78bfa" stroke-width="1"/>
+                <text x="495" y="670" text-anchor="middle" fill="#e2e8f0" font-size="11">Persistent</text>
+                <text x="495" y="685" text-anchor="middle" fill="#94a3b8" font-size="9">(facts, env)</text>
+                
+                <!-- Arrow from Agent to Memory -->
+                <line x1="420" y1="550" x2="420" y2="600" stroke="#a78bfa" stroke-width="2" marker-end="url(#arrowhead)"/>
+                <text x="430" y="580" fill="#a78bfa" font-size="10">Save/Load</text>
+                
+                <!-- Skills System (Top) -->
+                <rect x="280" y="80" width="280" height="120" rx="8" fill="rgba(120, 53, 15, 0.3)" stroke="#fbbf24" stroke-width="1.5"/>
+                <text x="420" y="110" text-anchor="middle" fill="#fbbf24" font-size="14" font-weight="bold">SKILLS SYSTEM</text>
+                
+                <rect x="310" y="130" width="220" height="50" rx="4" fill="rgba(120, 53, 15, 0.5)" stroke="#fbbf24" stroke-width="1"/>
+                <text x="420" y="155" text-anchor="middle" fill="#e2e8f0" font-size="11">Reusable Workflows</text>
+                <text x="420" y="170" text-anchor="middle" fill="#94a3b8" font-size="9">(SKILL.md format)</text>
+                
+                <!-- Arrow from Skills to Agent -->
+                <line x1="420" y1="200" x2="420" y2="250" stroke="#fbbf24" stroke-width="2" marker-end="url(#arrowhead)"/>
+                <text x="430" y="230" fill="#fbbf24" font-size="10">Load Skill</text>
+                
+                <!-- Cron System (Far Right) -->
+                <rect x="950" y="350" width="200" height="100" rx="8" fill="rgba(251, 146, 60, 0.3)" stroke="#fb923c" stroke-width="1.5" stroke-dasharray="4,4"/>
+                <text x="1050" y="380" text-anchor="middle" fill="#fb923c" font-size="14" font-weight="bold">CRON SYSTEM</text>
+                <text x="1050" y="405" text-anchor="middle" fill="#e2e8f0" font-size="11">Scheduled Tasks</text>
+                <text x="1050" y="425" text-anchor="middle" fill="#94a3b8" font-size="10">(daily/weekly/event)</text>
+                <text x="1050" y="445" text-anchor="middle" fill="#94a3b8" font-size="10">Auto-delivery</text>
+                
+                <!-- Arrow from Agent to Cron -->
+                <line x1="560" y1="400" x2="950" y2="400" stroke="#fb923c" stroke-width="2" marker-end="url(#arrowhead)"/>
+                <text x="755" y="390" text-anchor="middle" fill="#fb923c" font-size="10">Schedule</text>
+                
+                <!-- Session Search (Bottom Right) -->
+                <rect x="620" y="600" width="200" height="80" rx="6" fill="rgba(30, 41, 59, 0.5)" stroke="#94a3b8" stroke-width="1.5"/>
+                <text x="720" y="630" text-anchor="middle" fill="#94a3b8" font-size="12" font-weight="bold">SESSION SEARCH</text>
+                <text x="720" y="655" text-anchor="middle" fill="#94a3b8" font-size="10">Past Transcripts</text>
+                <text x="720" y="670" text-anchor="middle" fill="#94a3b8" font-size="10">(cross-session recall)</text>
+                
+                <!-- Legend -->
+                <g transform="translate(40, 680)">
+                    <text x="0" y="0" fill="#e2e8f0" font-size="12" font-weight="bold">Legend:</text>
+                    
+                    <rect x="0" y="15" width="20" height="12" rx="2" fill="rgba(6, 78, 59, 0.4)" stroke="#34d399" stroke-width="1.5"/>
+                    <text x="30" y="25" fill="#94a3b8" font-size="10">Agent Core</text>
+                    
+                    <rect x="120" y="15" width="20" height="12" rx="2" fill="rgba(8, 51, 68, 0.5)" stroke="#22d3ee" stroke-width="1"/>
+                    <text x="150" y="25" fill="#94a3b8" font-size="10">Tools</text>
+                    
+                    <rect x="220" y="15" width="20" height="12" rx="2" fill="rgba(76, 29, 149, 0.6)" stroke="#a78bfa" stroke-width="1"/>
+                    <text x="250" y="25" fill="#94a3b8" font-size="10">Memory</text>
+                    
+                    <rect x="320" y="15" width="20" height="12" rx="2" fill="rgba(120, 53, 15, 0.5)" stroke="#fbbf24" stroke-width="1"/>
+                    <text x="350" y="25" fill="#94a3b8" font-size="10">Skills</text>
+                    
+                    <rect x="420" y="15" width="20" height="12" rx="2" fill="rgba(251, 146, 60, 0.3)" stroke="#fb923c" stroke-width="1" stroke-dasharray="4,4"/>
+                    <text x="450" y="25" fill="#94a3b8" font-size="10">Cron Jobs</text>
+                    
+                    <line x1="550" y1="21" x2="570" y2="21" stroke="#34d399" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    <text x="580" y="25" fill="#94a3b8" font-size="10">Data Flow</text>
+                </g>
+            </svg>
+        </div>
+        
+        <div class="summary-grid">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-dot emerald"></div>
+                    <h3>Agent Core</h3>
+                </div>
+                <ul>
+                    <li>Context Engine (session state)</li>
+                    <li>Tool Router (selects best tool)</li>
+                    <li>Response Generator (formats output)</li>
+                    <li>Skills loaded on demand</li>
+                    <li>Memory injected every turn</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-dot cyan"></div>
+                    <h3>Tool System</h3>
+                </div>
+                <ul>
+                    <li>15+ built-in tools</li>
+                    <li>Terminal, file, browser, search</li>
+                    <li>Delegation (subagents)</li>
+                    <li>Communication (Telegram, SMS)</li>
+                    <li>Vision (image analysis)</li>
+                </ul>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-dot violet"></div>
+                    <h3>Memory & Skills</h3>
+                </div>
+                <ul>
+                    <li>Memory: Persistent facts (2,200 chars)</li>
+                    <li>User Profile: Preferences (1,375 chars)</li>
+                    <li>Skills: Reusable workflows</li>
+                    <li>Session Search: Past transcripts</li>
+                    <li>Cron: Scheduled automation</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

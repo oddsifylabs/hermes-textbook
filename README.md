@@ -1,63 +1,97 @@
-# HERMES AGENTS IN PRODUCTION
+# Hermes Agents in Production
+
 ## Building Autonomous AI Systems with Railway Deployment
 
 ### A Technical Textbook
 
----
+**Live Demo:** [reservato-production.railway.app](https://reservato-production.railway.app) (coming soon)
 
-**By Jesse J. Collins**  
-Founder, Oddsify Labs
-
-**By Markus Hermes**  
-Hermes Agent Team Lead
+**GitHub:** [github.com/oddsifylabs/hermes-textbook](https://github.com/oddsifylabs/hermes-textbook)
 
 ---
 
-```
-    _   _                      _     
-   | | | | __ _ _ __   __ _  __| |___ 
-   | |_| |/ _` | '_ \ / _` |/ _` / __|
-   |  _  | (_| | | | | (_| | (_| \__ \
-   |_| |_|\__,_|_| |_|\__,_|\__,_|___/
-   
-        AUTONOMOUS AI SYSTEMS
-```
+## 📖 What This Is
 
----
+A **hands-on technical textbook** for building production-ready autonomous AI agent systems using Hermes Agents. Every chapter includes complete working code, architecture diagrams, and real-world deployment on Railway.
 
-## ABOUT THIS BOOK
+## 🏗️ The Project: Reservato
 
-This is a **hands-on technical textbook** for building production-ready autonomous AI agent systems using Hermes Agents. Every chapter includes:
-
-- ✅ Complete working code examples
-- ✅ Architecture diagrams and flowcharts
-- ✅ Real-world deployment on Railway
-- ✅ Production booking site as the running example project
-
-**Prerequisites:** Basic Python knowledge, familiarity with Git, comfort with terminal/CLI
-
-**Time to Complete:** 4-6 weeks (building the full booking site)
-
----
-
-## THE PROJECT: RESERVATO
-
-Throughout this book, you'll build **Reservato** — a production-ready reservation booking system that demonstrates every Hermes Agents feature:
-
-### What Reservato Does
+Throughout this book, you'll build **Reservato** — a production-ready reservation booking system:
 
 | Feature | Description |
 |---------|-------------|
-| 🍽️ Restaurant Reservations | Table booking with time slots, party size, special requests |
-| 📅 Calendar Integration | Real-time availability, conflict detection |
-| 💳 Payment Processing | Stripe integration for deposits and cancellations |
-| 📧 Automated Confirmations | Email/SMS reminders, follow-ups |
-| 🤖 AI Agent Handling | Natural language booking via chat |
-| 📊 Analytics Dashboard | Occupancy rates, revenue, peak times |
-| 🔔 Webhook Notifications | Real-time updates to staff |
-| 📱 Multi-Platform | Web, Telegram, SMS booking |
+| 🍽️ Restaurant Reservations | Table booking with time slots, party size |
+| 📅 Real-time Availability | Conflict detection, calendar integration |
+| 💳 Stripe Payments | Deposits and cancellation fees |
+| 📧 Automated Confirmations | Email/SMS reminders via Hermes Agents |
+| 🤖 AI Agent Booking | Natural language reservation handling |
+| 📊 Analytics Dashboard | Occupancy rates, revenue tracking |
 
-### Tech Stack
+## 📚 Book Structure
+
+### Part I: Foundations
+1. Hermes Agents Overview
+2. Tool System Deep Dive
+3. Skills & Automation
+
+### Part II: Building Reservato
+4. Multi-Agent Workflows
+5. Database & Models (SQLAlchemy)
+6. API Development (FastAPI)
+7. Frontend Integration (HTMX + Tailwind)
+
+### Part III: Production Deployment
+8. Railway Deployment
+9. Monitoring & Observability
+10. Maintenance & Iteration
+
+## 🚀 Quick Start
+
+### Prerequisites
+- Python 3.11+
+- Git
+- Railway account (free tier works)
+
+### Clone the Repository
+
+```bash
+# Textbook source
+git clone https://github.com/oddsifylabs/hermes-textbook.git
+cd hermes-textbook
+
+# Reservato project
+git clone https://github.com/oddsifylabs/reservato.git
+cd reservato
+```
+
+### Install Dependencies
+
+```bash
+cd reservato
+pip install -e ".[dev]"
+```
+
+### Set Up Environment
+
+```bash
+cp .env.example .env
+# Edit .env with your API keys
+```
+
+### Run Locally
+
+```bash
+uvicorn src.api.main:app --reload
+# Visit http://localhost:8000/docs
+```
+
+## 📊 Architecture
+
+See interactive diagrams:
+- [Agent Architecture](diagrams/01-agent-architecture.html)
+- [Booking Flow](diagrams/02-booking-flow.html)
+
+## 🛠️ Tech Stack
 
 | Layer | Technology |
 |-------|------------|
@@ -65,170 +99,60 @@ Throughout this book, you'll build **Reservato** — a production-ready reservat
 | **Backend** | FastAPI (Python 3.11+) |
 | **Database** | PostgreSQL (Railway managed) |
 | **Deployment** | Railway.app |
-| **Payments** | Stripe API |
-| **Email** | Resend / SendGrid |
+| **Payments** | Stripe |
+| **Email** | Resend |
 | **SMS** | Twilio |
 | **Frontend** | HTMX + Tailwind CSS |
-| **Monitoring** | Health checks, logging, alerts |
 
----
+## 📖 Chapters
 
-## BOOK STRUCTURE
+| Chapter | Status | Description |
+|---------|--------|-------------|
+| 1 | ⏳ Coming Soon | Hermes Agents Overview |
+| 2 | ⏳ Coming Soon | Tool System Deep Dive |
+| 3 | ⏳ Coming Soon | Skills & Automation |
+| 4 | ⏳ Coming Soon | Multi-Agent Workflows |
+| 5 | ⏳ Coming Soon | Database & Models |
+| 6 | ⏳ Coming Soon | API Development |
+| 7 | ⏳ Coming Soon | Frontend Integration |
+| 8 | ⏳ Coming Soon | Railway Deployment |
+| 9 | ⏳ Coming Soon | Monitoring & Observability |
+| 10 | ⏳ Coming Soon | Maintenance & Iteration |
 
-### Part I: Foundations (Chapters 1-3)
+## 🎯 Learning Outcomes
 
-| Chapter | Title | What You'll Build |
-|---------|-------|-------------------|
-| 1 | Hermes Agents Overview | Agent architecture, tool system, memory |
-| 2 | Tool System Deep Dive | Terminal, file, browser, search tools |
-| 3 | Skills & Automation | Custom skills, cron jobs, workflows |
+After completing this book, you will be able to:
 
-### Part II: Building Reservato (Chapters 4-7)
+- ✅ Build autonomous AI agents with Hermes
+- ✅ Design multi-agent workflows
+- ✅ Deploy production APIs on Railway
+- ✅ Integrate payments, email, and SMS
+- ✅ Implement monitoring and alerting
+- ✅ Manage production deployments
 
-| Chapter | Title | What You'll Build |
-|---------|-------|-------------------|
-| 4 | Multi-Agent Workflows | Booking agent, confirmation agent, analytics agent |
-| 5 | Database & Models | PostgreSQL schema, SQLAlchemy ORM |
-| 6 | API Development | FastAPI endpoints, validation, error handling |
-| 7 | Frontend Integration | HTMX booking interface, real-time updates |
+## 🤝 Contributing
 
-### Part III: Production Deployment (Chapters 8-10)
+Contributions welcome! This is a living textbook.
 
-| Chapter | Title | What You'll Build |
-|---------|-------|-------------------|
-| 8 | Railway Deployment | Environment config, CI/CD, scaling |
-| 9 | Monitoring & Observability | Health checks, logging, alerting |
-| 10 | Maintenance & Iteration | Updates, backups, disaster recovery |
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Submit a pull request
 
-### Appendices
-
-| Appendix | Title |
-|----------|-------|
-| A | Hermes Tool Reference |
-| B | Railway CLI Quickstart |
-| C | Stripe Integration Guide |
-| D | Production Checklist |
-
----
-
-## HOW TO USE THIS BOOK
-
-### The Workflow
-
-Each chapter follows this pattern:
-
-```
-1. READ → Understand the concept (15-30 min)
-2. BUILD → Follow the code examples (1-2 hours)
-3. DEPLOY → Push to Railway, verify it works (30 min)
-4. EXPERIMENT → Modify, break, fix, learn (ongoing)
-```
-
-### Repository Structure
-
-```
-hermes-textbook/
-├── README.md                 # This file
-├── chapters/                 # Individual chapter markdown files
-│   ├── chapter-01-overview.md
-│   ├── chapter-02-tools.md
-│   ├── chapter-03-skills.md
-│   └── ...
-├── reservato/                # The booking site project
-│   ├── README.md
-│   ├── pyproject.toml
-│   ├── src/
-│   │   ├── agents/          # Hermes agent configurations
-│   │   ├── api/             # FastAPI endpoints
-│   │   ├── models/          # SQLAlchemy models
-│   │   ├── services/        # Business logic
-│   │   └── frontend/        # HTMX + Tailwind
-│   ├── tests/               # Pytest test suite
-│   └── railway.json         # Railway deployment config
-├── diagrams/                 # Architecture diagrams (SVG/HTML)
-│   ├── agent-architecture.html
-│   ├── booking-flow.html
-│   └── ...
-└── scripts/                  # Helper scripts
-    ├── setup.sh
-    ├── deploy.sh
-    └── seed_data.py
-```
-
-### Getting Help
-
-| Resource | Link |
-|----------|------|
-| GitHub Repo | github.com/oddsifylabs/hermes-textbook |
-| Live Demo | reservato-production.railway.app |
-| Hermes Docs | github.com/hermes-agents/hermes |
-| Railway Docs | docs.railway.app |
-| Discord | [coming soon] |
-
----
-
-## CONVENTIONS USED
-
-### Code Blocks
-
-```python
-# Python code with syntax highlighting
-from hermes_tools import terminal, read_file, write_file
-
-def example():
-    return "Hello, Hermes!"
-```
-
-### Terminal Commands
-
-```bash
-# Commands you run in your terminal
-$ railway init
-$ railway up
-```
-
-### Callouts
-
-> 💡 **Pro Tip:** Railway offers free tier with $5/month credit — perfect for development.
-
-> ⚠️ **Warning:** Never commit `.env` files with API keys to GitHub.
-
-> 🐢 **Testudo Principle:** "Process > Results. Deploy early, deploy often."
-
----
-
-## VERSION INFORMATION
-
-| Component | Version |
-|-----------|---------|
-| Hermes Agents | 1.0+ |
-| Python | 3.11+ |
-| FastAPI | 0.109+ |
-| Railway CLI | 3.0+ |
-| PostgreSQL | 15+ |
-
----
-
-## LICENSE
+## 📄 License
 
 MIT License — Free for personal and commercial use.
 
-Attribution appreciated but not required.
+## 🙏 Acknowledgments
 
----
-
-## ACKNOWLEDGMENTS
-
-Built with Hermes Agents, deployed on Railway, powered by coffee.
-
----
-
-```
-🐢 HERMES AGENTS IN PRODUCTION
-
-For the builders who ship.
-```
+Built with:
+- [Hermes Agents](https://github.com/hermes-agents/hermes)
+- [FastAPI](https://fastapi.tiangolo.com/)
+- [Railway](https://railway.app/)
+- Coffee ☕
 
 ---
 
 **First Edition** | 2026 | Jesse J. Collins & Markus Hermes
+
+🐢 *Process > Results. Ship early, ship often.*
